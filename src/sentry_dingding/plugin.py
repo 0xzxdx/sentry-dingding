@@ -5,30 +5,30 @@ import json
 import requests
 from sentry.plugins.bases.notify import NotificationPlugin
 
-import sentry_dingtalk
-from .forms import DingTalkOptionsForm
+import sentry_dingding
+from .forms import DingDingOptionsForm
 
 DingTalk_API = "https://oapi.dingtalk.com/robot/send?access_token={token}"
 
 
-class DingTalkPlugin(NotificationPlugin):
+class DingDingPlugin(NotificationPlugin):
     """
-    Sentry plugin to send error counts to DingTalk.
+    Sentry plugin to send error counts to DingDing.
     """
     author = 'ansheng'
-    author_url = 'https://github.com/anshengme/sentry-dingtalk'
-    version = sentry_dingtalk.VERSION
-    description = 'Send error counts to DingTalk.'
-    slug = 'DingTalk'
-    title = 'DingTalk'
+    author_url = 'https://github.com/anshengme/sentry-dingding'
+    version = sentry_dingding.VERSION
+    description = 'Send error counts to DingDing.'
+    slug = 'DingDing'
+    title = 'DingDing'
     conf_key = slug
     conf_title = title
     resource_links = [
-        ('Source', 'https://github.com/anshengme/sentry-dingtalk'),
-        ('Bug Tracker', 'https://github.com/anshengme/sentry-dingtalk/issues'),
-        ('README', 'https://github.com/anshengme/sentry-dingtalk/blob/master/README.md'),
+        ('Source', 'https://github.com/anshengme/sentry-dingding'),
+        ('Bug Tracker', 'https://github.com/anshengme/sentry-dingding/issues'),
+        ('README', 'https://github.com/anshengme/sentry-dingding/blob/master/README.md'),
     ]
-    project_conf_form = DingTalkOptionsForm
+    project_conf_form = DingDingOptionsForm
 
     def is_configured(self, project):
         """

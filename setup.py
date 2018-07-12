@@ -1,22 +1,20 @@
 #!/usr/bin/env python
 from setuptools import setup, find_packages
 
-from sentry_dingtalk import VERSION, NAME
-
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name=NAME,
-    version=VERSION,
+    name="sentry-dingding",
+    version='0.0.1',
     author='ansheng',
     author_email='ianshengme@gmail.com',
-    url='https://github.com/anshengme/sentry-dingtalk',
-    description='A Sentry extension which send errors stats to DingTalk',
+    url='https://github.com/anshengme/sentry-dingding',
+    description='A Sentry extension which send errors stats to DingDing',
     long_description=long_description,
     long_description_content_type="text/markdown",
     license='MIT',
-    keywords='sentry dingtalk',
+    keywords='sentry dingding',
     include_package_data=True,
     zip_safe=False,
     package_dir={'': 'src'},
@@ -27,7 +25,7 @@ setup(
     ],
     entry_points={
         'sentry.plugins': [
-            'sentry_dingtalk = sentry_dingtalk.plugin:DingTalkPlugin'
+            'sentry_dingding = sentry_dingding.plugin:DingDingPlugin'
         ]
     },
     classifiers=[
