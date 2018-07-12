@@ -12,10 +12,10 @@ $ pip install sentry-dingding
 
 在`项目`的所有集成页面找到`DingDing`插件，启用，并设置`Access Token`
 
-![plugin](./docs/images/options.png)
+![plugin](https://raw.githubusercontent.com/anshengme/sentry-dingding/master/docs/images/options.png)
 
 在插件上使用`Test Plugin`进行测试，当配置好`Access Token`后，在钉钉群内会得到以下警告
 
-![plugin](./docs/images/dingding.png)
+![plugin](https://raw.githubusercontent.com/anshengme/sentry-dingding/master/docs/images/dingding.png)
 
 点击`href`按钮，打开异常详情页面。
