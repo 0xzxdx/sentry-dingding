@@ -4,18 +4,8 @@
 
 ## 安装
 
-如果是以Python的方式运行，使用`pip`安装即可
-
 ```bash
 $ pip install sentry-dingding
-```
-
-如果是以docker的方式运行，进入容器然后在`pip`安装
-
-```bash
-$ docker-compose exec web bash
-$ pip install sentry-dingding
-$ docker-compose restart
 ```
 
 ## 使用
