@@ -36,7 +36,10 @@ class DingDingPlugin(NotificationPlugin):
         """
         return bool(self.get_option('access_token', project))
 
-    def post_process(self, group, event, is_new, is_sample, **kwargs):
+    def notify_users(self, group, event, fail_silently=False):
+        self.post_process(self, group, event, fail_silently=fail_silently)
+
+    def post_process(self, group, event, **kwargs):
         """
         Process error.
         """
