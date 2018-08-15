@@ -55,9 +55,9 @@ class DingDingPlugin(NotificationPlugin):
         data = {
             "msgtype": "markdown",
             "markdown": {
-                "title": "{0}".format(metadata["type"]),
+                "title": "{0}".format(metadata["title"]),
                 "text": "#### {title}  \n > {message} [href]({url})".format(
-                    title=metadata["type"],
+                    title=metadata["title"],
                     message=event.message,
                     url="{0}events/{1}/".format(group.get_absolute_url(), event.id)
                 )
