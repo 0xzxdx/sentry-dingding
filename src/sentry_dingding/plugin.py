@@ -37,7 +37,7 @@ class DingDingPlugin(NotificationPlugin):
         return bool(self.get_option('access_token', project))
 
     def notify_users(self, group, event, fail_silently=False):
-        self.post_process(self, group, event, fail_silently=fail_silently)
+        self.post_process(group, event, fail_silently=fail_silently)
 
     def post_process(self, group, event, **kwargs):
         """
