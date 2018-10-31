@@ -19,15 +19,16 @@ class DingDingPlugin(NotificationPlugin):
     author_url = 'https://github.com/anshengme/sentry-dingding'
     version = sentry_dingding.VERSION
     description = 'Send error counts to DingDing.'
-    slug = 'DingDing'
-    title = 'DingDing'
-    conf_key = slug
-    conf_title = title
     resource_links = [
         ('Source', 'https://github.com/anshengme/sentry-dingding'),
         ('Bug Tracker', 'https://github.com/anshengme/sentry-dingding/issues'),
         ('README', 'https://github.com/anshengme/sentry-dingding/blob/master/README.md'),
     ]
+
+    slug = 'DingDing'
+    title = 'DingDing'
+    conf_key = slug
+    conf_title = title
     project_conf_form = DingDingOptionsForm
 
     def is_configured(self, project):
@@ -49,23 +50,22 @@ class DingDingPlugin(NotificationPlugin):
         access_token = self.get_option('access_token', group.project)
 
         send_url = DingTalk_API.format(token=access_token)
-
-        metadata = event.get_event_metadata()
+        title = "New alert from {}".format(event.project.name)
 
         data = {
             "msgtype": "markdown",
             "markdown": {
-                "title": "{0}".format(metadata["title"]),
-                "text": "#### {title}  \n > {message} [href]({url})".format(
-                    title=metadata["title"],
+                "title": title,
+                "text": "#### {title} \n > {message} [href]({url})".format(
+                    title=title,
                     message=event.message,
                     url="{0}events/{1}/".format(group.get_absolute_url(), event.id)
                 )
             }
         }
-
         requests.post(
             url=send_url,
             headers={"Content-Type": "application/json"},
             data=json.dumps(data).encode("utf-8")
         )
+        print 2
