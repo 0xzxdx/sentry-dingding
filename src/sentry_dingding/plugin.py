@@ -56,10 +56,10 @@ class DingDingPlugin(NotificationPlugin):
             "msgtype": "markdown",
             "markdown": {
                 "title": title,
-                "text": "#### {title} \n > {message} [href]({url})".format(
+                "text": u"#### {title} \n > {message} [href]({url})".format(
                     title=title,
                     message=event.message,
-                    url="{0}events/{1}/".format(group.get_absolute_url(), event.id)
+                    url=u"{0}events/{1}/".format(group.get_absolute_url(), event.id)
                 )
             }
         }
