@@ -37,10 +37,10 @@ class DingDingPlugin(NotificationPlugin):
         """
         return bool(self.get_option('access_token', project))
 
-    def notify_users(self, group, event, fail_silently=False):
-        self.post_process(group, event, fail_silently=fail_silently)
+    def notify_users(self, group, event, *args, **kwargs):
+        self.post_process(group, event, *args, **kwargs)
 
-    def post_process(self, group, event, **kwargs):
+    def post_process(self, group, event, *args, **kwargs):
         """
         Process error.
         """
@@ -48,9 +48,8 @@ class DingDingPlugin(NotificationPlugin):
             return
 
         access_token = self.get_option('access_token', group.project)
-
         send_url = DingTalk_API.format(token=access_token)
-        title = "New alert from {}".format(event.project.name)
+        title = "New alert from {}".format(event.project.slug)
 
         data = {
             "msgtype": "markdown",
@@ -59,7 +58,7 @@ class DingDingPlugin(NotificationPlugin):
                 "text": u"#### {title} \n > {message} [href]({url})".format(
                     title=title,
                     message=event.message,
-                    url=u"{0}events/{1}/".format(group.get_absolute_url(), event.id)
+                    url=u"{}events/{}/".format(group.get_absolute_url(), event.id),
                 )
             }
         }
