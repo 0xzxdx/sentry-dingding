@@ -52,13 +52,13 @@ class DingDingPlugin(NotificationPlugin):
 
         access_token = self.get_option('access_token', group.project)
         send_url = DingTalk_API.format(token=access_token)
-        title = u"[{}]报错，请及时处理。".format(event.project.slug)
+        title = u"New alert from {}".format(event.project.slug)
 
         data = {
             "msgtype": "markdown",
             "markdown": {
                 "title": title,
-                "text": u"#### {title} \n > {message} [查看详情]({url})".format(
+                "text": u"#### {title} \n > {message} [href]({url})".format(
                     title=title,
                     message=event.message,
                     url=u"{}events/{}/".format(group.get_absolute_url(), event.id),
