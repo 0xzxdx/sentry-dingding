@@ -52,7 +52,7 @@ class DingDingPlugin(NotificationPlugin):
 
         access_token = self.get_option('access_token', group.project)
         send_url = DingTalk_API.format(token=access_token)
-        title = "[{}]报错，请及时处理。".format(event.project.slug)
+        title = u"[{}]报错，请及时处理。".format(event.project.slug)
 
         data = {
             "msgtype": "markdown",
