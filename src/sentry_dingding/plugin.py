@@ -60,7 +60,7 @@ class DingDingPlugin(NotificationPlugin):
                 "title": title,
                 "text": u"#### {title} \n > {message} [href]({url})".format(
                     title=title,
-                    message=event.message,
+                    message=event.title or event.message,
                     url=u"{}events/{}/".format(group.get_absolute_url(), event.event_id),
                 )
             }
