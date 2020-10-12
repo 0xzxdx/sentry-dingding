@@ -73,7 +73,7 @@ class DingDingPlugin(NotificationPlugin):
                     title=title,
                     message=event.message,
                     url=u"{}events/{}/".format(group.get_absolute_url(), event.id),
-                    phone=response.phone
+                    phone=response['phone']
                 ),
 
             },
