@@ -79,7 +79,7 @@ class DingDingPlugin(NotificationPlugin):
             },
             "at": {
               "atMobiles": [
-                  response.phone
+                  response['phone']
               ],
               "isAtAll": false
           }
