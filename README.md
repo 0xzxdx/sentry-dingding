@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-$ pip install sentry-dingding
+$ pip install sentry-dingding-feely
 ```
 
 ## 使用
