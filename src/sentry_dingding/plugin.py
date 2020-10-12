@@ -15,14 +15,14 @@ class DingDingPlugin(NotificationPlugin):
     """
     Sentry plugin to send error counts to DingDing.
     """
-    author = 'ansheng'
-    author_url = 'https://github.com/anshengme/sentry-dingding'
+    author = 'lcfevr'
+    author_url = 'https://github.com/lcfevr/sentry-dingding'
     version = sentry_dingding.VERSION
     description = 'Send error counts to DingDing.'
     resource_links = [
-        ('Source', 'https://github.com/anshengme/sentry-dingding'),
-        ('Bug Tracker', 'https://github.com/anshengme/sentry-dingding/issues'),
-        ('README', 'https://github.com/anshengme/sentry-dingding/blob/master/README.md'),
+        ('Source', 'https://github.com/lcfevr/sentry-dingding'),
+        ('Bug Tracker', 'https://github.com/lcfevr/sentry-dingding/issues'),
+        ('README', 'https://github.com/lcfevr/sentry-dingding/blob/master/README.md'),
     ]
 
     slug = 'DingDing'
@@ -54,17 +54,39 @@ class DingDingPlugin(NotificationPlugin):
         send_url = DingTalk_API.format(token=access_token)
         title = u"New alert from {}".format(event.project.slug)
 
+
+        response = requests.get(
+            url="http://web-middle.ruibogyl.work/sentry/getDingDingAssignee",
+            headers={"Content-Type": "application/json"},
+            data=json.dumps({
+                url: event.url
+            })
+          ).json()
+
+
+
         data = {
             "msgtype": "markdown",
             "markdown": {
                 "title": title,
-                "text": u"#### {title} \n > {message} [href]({url})".format(
+                "text": u"#### {title} \n > {message} [href]({url}) @{phone}".format(
                     title=title,
                     message=event.message,
                     url=u"{}events/{}/".format(group.get_absolute_url(), event.id),
-                )
-            }
+                    phone=response.phone
+                ),
+
+            },
+            "at": {
+              "atMobiles": [
+                  response.phone
+              ],
+              "isAtAll": false
+          }
         }
+
+
+
         requests.post(
             url=send_url,
             headers={"Content-Type": "application/json"},
